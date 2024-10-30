@@ -17,11 +17,33 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 		HICON hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1));
 		SendMessage(hwnd, WM_SETICON, 0, (LPARAM)hIcon);
+		SendMessage(GetDlgItem(hwnd, IDC_EDIT_LOGIN), WM_SETTEXT, 0, (LPARAM)"Введите имя пользователя");				
 	}
 		break;
 	case WM_COMMAND:
 		switch (LOWORD(wParam))
 		{
+		case IDC_EDIT_LOGIN:
+		{
+			CHAR sz_buffer[256]{};
+			SendMessage((HWND)lParam, WM_GETTEXT, 256, (LPARAM)sz_buffer);				
+
+			if (HIWORD(wParam) == EN_SETFOCUS)
+				SendMessage((HWND)lParam, WM_SETTEXT, 0, (LPARAM)"");
+			if (HIWORD(wParam) == EN_SETFOCUS 
+				&& strcmp(sz_buffer, "") != 0
+				&& strcmp(sz_buffer, "Введите имя пользователя") != 0)
+				SendMessage((HWND)lParam, WM_SETTEXT, 0, (LPARAM)sz_buffer);
+			if (HIWORD(wParam) == EN_KILLFOCUS 
+				&& strcmp(sz_buffer, "") == 0)
+				SendMessage((HWND)lParam, WM_SETTEXT, 0, (LPARAM)"Введите имя пользователя");
+			if (HIWORD(wParam) == EN_KILLFOCUS 
+				&& strcmp(sz_buffer, "") != 0
+				&& strcmp(sz_buffer, "Введите имя пользователя") != 0)
+				SendMessage((HWND)lParam, WM_SETTEXT, 0, (LPARAM)sz_buffer);
+			
+		}
+		break;
 		case IDC_BUTTON_COPY:
 		{
 			HWND hEditLogin = GetDlgItem(hwnd, IDC_EDIT_LOGIN);

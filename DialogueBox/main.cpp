@@ -1,6 +1,8 @@
 ﻿#include<Windows.h>
 #include"resource.h"
 
+CONST CHAR g_sz_LOGIN_INVITATION[] = "Введите имя пользователя";
+
 BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, INT nCmdShow)
@@ -16,8 +18,9 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	case WM_INITDIALOG:
 	{
 		HICON hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1));
-		SendMessage(hwnd, WM_SETICON, 0, (LPARAM)hIcon);
-		SendMessage(GetDlgItem(hwnd, IDC_EDIT_LOGIN), WM_SETTEXT, 0, (LPARAM)"Введите имя пользователя");				
+		SendMessage(hwnd, WM_SETICON, 0, (LPARAM)hIcon);	
+		HWND hEditLogin = GetDlgItem(hwnd, IDC_EDIT_LOGIN);
+		SendMessage(hEditLogin, WM_SETTEXT, 0, (LPARAM)g_sz_LOGIN_INVITATION);
 	}
 		break;
 	case WM_COMMAND:
@@ -25,23 +28,14 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		{
 		case IDC_EDIT_LOGIN:
 		{
-			CHAR sz_buffer[256]{};
-			SendMessage((HWND)lParam, WM_GETTEXT, 256, (LPARAM)sz_buffer);				
-
-			if (HIWORD(wParam) == EN_SETFOCUS)
-				SendMessage((HWND)lParam, WM_SETTEXT, 0, (LPARAM)"");
-			if (HIWORD(wParam) == EN_SETFOCUS 
-				&& strcmp(sz_buffer, "") != 0
-				&& strcmp(sz_buffer, "Введите имя пользователя") != 0)
-				SendMessage((HWND)lParam, WM_SETTEXT, 0, (LPARAM)sz_buffer);
-			if (HIWORD(wParam) == EN_KILLFOCUS 
-				&& strcmp(sz_buffer, "") == 0)
-				SendMessage((HWND)lParam, WM_SETTEXT, 0, (LPARAM)"Введите имя пользователя");
-			if (HIWORD(wParam) == EN_KILLFOCUS 
-				&& strcmp(sz_buffer, "") != 0
-				&& strcmp(sz_buffer, "Введите имя пользователя") != 0)
-				SendMessage((HWND)lParam, WM_SETTEXT, 0, (LPARAM)sz_buffer);
-			
+			CONST INT SIZE = 256;
+			CHAR sz_buffer[SIZE]{};
+			HWND hEditLogin = GetDlgItem(hwnd, IDC_EDIT_LOGIN);
+			SendMessage(hEditLogin, WM_GETTEXT, SIZE, (LPARAM)sz_buffer);
+			if (HIWORD(wParam) == EN_SETFOCUS && strcmp(sz_buffer, g_sz_LOGIN_INVITATION) == 0)
+				SendMessage(hEditLogin, WM_SETTEXT, 0, (LPARAM)"");
+			if (HIWORD(wParam) == EN_KILLFOCUS && strcmp(sz_buffer, "") == 0)
+				SendMessage(hEditLogin, WM_SETTEXT, 0, (LPARAM)g_sz_LOGIN_INVITATION);
 		}
 		break;
 		case IDC_BUTTON_COPY:

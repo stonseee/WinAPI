@@ -44,6 +44,22 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			MessageBox(hwnd, sz_message, "Info", MB_OK | MB_ICONINFORMATION);
 		}
 		break;
+		case IDC_BUTTON_ADD:
+		{			
+			HWND hList = GetDlgItem(hwnd, IDC_LIST);
+			SendMessage(hList, LB_ADDSTRING, 0, (LPARAM)"Pic");
+		}
+		break;
+		case IDC_BUTTON_DELETE:
+		{			
+			CONST INT SIZE = 256;
+			CHAR sz_buffer[SIZE]{};
+			HWND hList = GetDlgItem(hwnd, IDC_LIST);
+			INT i = SendMessage(hList, LB_GETCURSEL, 0, 0);
+			SendMessage(hList, LB_GETTEXT, i, (LPARAM)sz_buffer);
+			SendMessage(hList, LB_DELETESTRING, i, (LPARAM)sz_buffer);
+		}
+		break;
 		case IDCANCEL: EndDialog(hwnd, 0); break;
 		}
 		break;

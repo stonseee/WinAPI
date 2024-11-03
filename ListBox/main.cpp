@@ -51,11 +51,8 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			HWND hList = GetDlgItem(hwnd, IDC_LIST);
 			HWND hEdit = GetDlgItem(hwnd, IDC_EDIT);			
 			SendMessage(hEdit, WM_GETTEXT, SIZE, (LPARAM)sz_buffer);
-			if (strcmp(sz_buffer, "") != 0)
-			{
-				SendMessage(hEdit, WM_GETTEXT, SIZE, (LPARAM)sz_buffer);
-				SendMessage(hList, LB_ADDSTRING, 0, (LPARAM)sz_buffer);
-			}			
+			if (strcmp(sz_buffer, "") != 0)				
+				SendMessage(hList, LB_ADDSTRING, 0, (LPARAM)sz_buffer);					
 		}
 		break;
 		case IDC_BUTTON_DELETE:
@@ -63,8 +60,7 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			CONST INT SIZE = 256;
 			CHAR sz_buffer[SIZE]{};
 			HWND hList = GetDlgItem(hwnd, IDC_LIST);
-			INT i = SendMessage(hList, LB_GETCURSEL, 0, 0);
-			SendMessage(hList, LB_GETTEXT, i, (LPARAM)sz_buffer);
+			INT i = SendMessage(hList, LB_GETCURSEL, 0, 0);			
 			SendMessage(hList, LB_DELETESTRING, i, (LPARAM)sz_buffer);
 		}
 		break;
@@ -73,8 +69,7 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			CONST INT SIZE = 256;
 			CHAR sz_buffer[SIZE];
 			HWND hList = GetDlgItem(hwnd, IDC_LIST);
-			INT i = SendMessage(hList, LB_GETCURSEL, 0, 0);
-			SendMessage(hList, LB_GETTEXT, i, (LPARAM)sz_buffer);
+			INT i = SendMessage(hList, LB_GETCURSEL, 0, 0);			
 			HWND hEdit = GetDlgItem(hwnd, IDC_EDIT);
 			SendMessage(hEdit, WM_GETTEXT, SIZE, (LPARAM)sz_buffer);
 

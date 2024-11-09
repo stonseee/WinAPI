@@ -2,6 +2,7 @@
 #include<Windows.h>
 #include<cstdio>
 #include<iostream>
+#include"resource.h"
 
 CONST CHAR g_sz_MY_WINDOW_CLASS[] = "My Window";
 
@@ -17,9 +18,27 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 	wc.cbClsExtra = 0;
 	wc.cbWndExtra = 0;
 
-	wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-	wc.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
-	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wc.hIcon = (HICON)LoadImage
+	(
+		hInstance,
+		"Ice_cream.ico",
+		IMAGE_ICON, 
+		LR_DEFAULTSIZE, 
+		LR_DEFAULTSIZE, 
+		LR_LOADFROMFILE
+	);	
+	wc.hIconSm = (HICON)LoadImage
+	(
+		hInstance,
+		"Banana.ico",
+		IMAGE_ICON, 
+		LR_DEFAULTSIZE, 
+		LR_DEFAULTSIZE, 
+		LR_LOADFROMFILE
+	);
+	//wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+	//wc.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
+	wc.hCursor = LoadCursor(hInstance, MAKEINTRESOURCE(IDC_CURSOR1));
 	wc.hbrBackground = (HBRUSH)COLOR_WINDOW;
 
 	wc.hInstance = hInstance;
@@ -74,7 +93,7 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	switch (uMsg)
 	{
 	case WM_CREATE:
-		AllocConsole();
+		//AllocConsole();
 		freopen("CONOUT$", "w", stdout);
 		break;
 	case WM_MOVE:

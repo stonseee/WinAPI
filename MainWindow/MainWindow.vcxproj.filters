@@ -38,5 +38,11 @@
     <Image Include="E:\наггетсы\4.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Banana.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Ice_cream.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

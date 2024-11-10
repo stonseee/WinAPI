@@ -18,7 +18,7 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 	wc.cbClsExtra = 0;
 	wc.cbWndExtra = 0;
 
-	wc.hIcon = (HICON)LoadImage
+	/*wc.hIcon = (HICON)LoadImage
 	(
 		hInstance,
 		"Ice_cream.ico",
@@ -35,7 +35,9 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 		LR_DEFAULTSIZE, 
 		LR_DEFAULTSIZE, 
 		LR_LOADFROMFILE
-	);
+	);*/
+	wc.hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON2));
+	wc.hIconSm = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1));
 	//wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);
 	//wc.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
 	wc.hCursor = LoadCursor(hInstance, MAKEINTRESOURCE(IDC_CURSOR1));

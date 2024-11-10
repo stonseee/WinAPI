@@ -139,7 +139,9 @@
     <None Include="cursor1.cur" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Banana.ico" />
     <Image Include="E:\наггетсы\4.bmp" />
+    <Image Include="Ice_cream.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

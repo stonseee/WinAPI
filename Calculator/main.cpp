@@ -20,9 +20,6 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	switch (uMsg)
 	{
 	case WM_INITDIALOG:
-	{
-		
-	}
 	break;
 	case WM_COMMAND:
 		switch (LOWORD(wParam))
@@ -35,19 +32,68 @@ BOOL CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			CHAR res[SIZE]{};
 			HWND hEdit1 = GetDlgItem(hwnd, IDC_EDIT1);
 			HWND hEdit2 = GetDlgItem(hwnd, IDC_EDIT2);			
-			//INT result = atoi(edit1) + atoi(edit2);
-
-			string s1;
-			
- 			INT result = atoi(edit1);
- 			//INT result = 33;
-			
+			SendMessage(hEdit1, WM_GETTEXT, SIZE, (LPARAM)edit1);
+			SendMessage(hEdit2, WM_GETTEXT, SIZE, (LPARAM)edit2);			
+			if (strcmp(edit1, "") == 0 || strcmp(edit2, "") == 0)
+				break;
+			DOUBLE result = stod(edit1) + stod(edit2);
 			string str = to_string(result);
 			strcpy(res, str.c_str());
+			MessageBox(hwnd, res, "Info", MB_OK | MB_ICONINFORMATION);			
+		}
+			break;
+		case IDC_BUTTON_MINUS:
+		{
+			CONST INT SIZE = 256;
+			CHAR edit1[SIZE]{};
+			CHAR edit2[SIZE]{};
+			CHAR res[SIZE]{};
+			HWND hEdit1 = GetDlgItem(hwnd, IDC_EDIT1);
+			HWND hEdit2 = GetDlgItem(hwnd, IDC_EDIT2);
 			SendMessage(hEdit1, WM_GETTEXT, SIZE, (LPARAM)edit1);
 			SendMessage(hEdit2, WM_GETTEXT, SIZE, (LPARAM)edit2);
+			if (strcmp(edit1, "") == 0 || strcmp(edit2, "") == 0)
+				break;
+			DOUBLE result = stod(edit1) - stod(edit2);
+			string str = to_string(result);
+			strcpy(res, str.c_str());
 			MessageBox(hwnd, res, "Info", MB_OK | MB_ICONINFORMATION);
-			//MessageBox(hwnd, "Вы нажали ОК.", "Info", MB_OK | MB_ICONINFORMATION);
+		}
+			break;
+		case IDC_BUTTON_MULTIPLY:
+		{
+			CONST INT SIZE = 256;
+			CHAR edit1[SIZE]{};
+			CHAR edit2[SIZE]{};
+			CHAR res[SIZE]{};
+			HWND hEdit1 = GetDlgItem(hwnd, IDC_EDIT1);
+			HWND hEdit2 = GetDlgItem(hwnd, IDC_EDIT2);
+			SendMessage(hEdit1, WM_GETTEXT, SIZE, (LPARAM)edit1);
+			SendMessage(hEdit2, WM_GETTEXT, SIZE, (LPARAM)edit2);
+			if (strcmp(edit1, "") == 0 || strcmp(edit2, "") == 0)
+				break;
+			DOUBLE result = stod(edit1) * stod(edit2);
+			string str = to_string(result);
+			strcpy(res, str.c_str());
+			MessageBox(hwnd, res, "Info", MB_OK | MB_ICONINFORMATION);
+		}
+			break;
+		case IDC_BUTTON_DIVIDE:
+		{
+			CONST INT SIZE = 256;
+			CHAR edit1[SIZE]{};
+			CHAR edit2[SIZE]{};
+			CHAR res[SIZE]{};
+			HWND hEdit1 = GetDlgItem(hwnd, IDC_EDIT1);
+			HWND hEdit2 = GetDlgItem(hwnd, IDC_EDIT2);
+			SendMessage(hEdit1, WM_GETTEXT, SIZE, (LPARAM)edit1);
+			SendMessage(hEdit2, WM_GETTEXT, SIZE, (LPARAM)edit2);
+			if (strcmp(edit1, "") == 0 || strcmp(edit2, "") == 0)
+				break;
+			DOUBLE result = stod(edit1) / stod(edit2);
+			string str = to_string(result);
+			strcpy(res, str.c_str());
+			MessageBox(hwnd, res, "Info", MB_OK | MB_ICONINFORMATION);
 		}
 			break;
 		case IDOK:

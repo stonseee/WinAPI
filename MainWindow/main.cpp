@@ -40,7 +40,16 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 	wc.hIconSm = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1));
 	//wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);
 	//wc.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
-	wc.hCursor = LoadCursor(hInstance, MAKEINTRESOURCE(IDC_CURSOR1));
+	wc.hCursor = (HCURSOR)LoadImage
+	(
+		hInstance, 
+		"cursors\\starcraft-original\\Working In Background.ani", 
+		IMAGE_CURSOR, 
+		LR_DEFAULTSIZE, 
+		LR_DEFAULTSIZE, 
+		LR_LOADFROMFILE
+	);
+	//wc.hCursor = LoadCursor(hInstance, MAKEINTRESOURCE(IDC_CURSOR1));
 	wc.hbrBackground = (HBRUSH)COLOR_WINDOW;
 
 	wc.hInstance = hInstance;

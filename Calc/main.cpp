@@ -27,28 +27,28 @@ CONST INT g_i_WINDOW_HEIGHT = g_i_DISPLAY_HEIGHT + g_i_START_Y * 2 + (g_i_BUTTON
 CONST CHAR* g_OPERATIONS[] = { "+", "-", "*", "/" };
 CONST CHAR* icon_OPERATIONS[] = 
 { 
-	"ButtonsBMP\\metal_mistral\\button_plus.bmp",
-	"ButtonsBMP\\metal_mistral\\button_minus.bmp",
-	"ButtonsBMP\\metal_mistral\\button_aster.bmp",
-	"ButtonsBMP\\metal_mistral\\button_slash.bmp",
+	"ButtonsBMP\\square_blue\\button_plus.bmp",
+	"ButtonsBMP\\square_blue\\button_minus.bmp",
+	"ButtonsBMP\\square_blue\\button_aster.bmp",
+	"ButtonsBMP\\square_blue\\button_slash.bmp",
 };
 
 CONST CHAR* icon_NUMBERS[][3] =
 {
 	{
-	"ButtonsBMP\\metal_mistral\\button_1.bmp",
-	"ButtonsBMP\\metal_mistral\\button_2.bmp",
-	"ButtonsBMP\\metal_mistral\\button_3.bmp"
-	},
-	{
-	"ButtonsBMP\\metal_mistral\\button_4.bmp",
-	"ButtonsBMP\\metal_mistral\\button_5.bmp",
-	"ButtonsBMP\\metal_mistral\\button_6.bmp"
-	},
-	{
-	"ButtonsBMP\\metal_mistral\\button_7.bmp",
-	"ButtonsBMP\\metal_mistral\\button_8.bmp",
-	"ButtonsBMP\\metal_mistral\\button_9.bmp"
+	"ButtonsBMP\\square_blue\\button_1.bmp",
+	"ButtonsBMP\\square_blue\\button_2.bmp",
+	"ButtonsBMP\\square_blue\\button_3.bmp"
+	},			 
+	{			 
+	"ButtonsBMP\\square_blue\\button_4.bmp",
+	"ButtonsBMP\\square_blue\\button_5.bmp",
+	"ButtonsBMP\\square_blue\\button_6.bmp"
+	},			 
+	{			 
+	"ButtonsBMP\\square_blue\\button_7.bmp",
+	"ButtonsBMP\\square_blue\\button_8.bmp",
+	"ButtonsBMP\\square_blue\\button_9.bmp"
 	}
 };
 
@@ -184,7 +184,7 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		hBitmap = (HBITMAP)LoadImage
 		(
 			GetModuleHandle(NULL),
-			"ButtonsBMP\\metal_mistral\\button_0.bmp",
+			"ButtonsBMP\\square_blue\\button_0.bmp",
 			IMAGE_BITMAP,
 			g_i_BUTTON_DOUBLE_SIZE,
 			g_i_BUTTON_SIZE,
@@ -211,7 +211,7 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		hBitmap = (HBITMAP)LoadImage
 		(
 			GetModuleHandle(NULL),
-			"ButtonsBMP\\metal_mistral\\button_point.bmp",
+			"ButtonsBMP\\square_blue\\button_point.bmp",
 			IMAGE_BITMAP,
 			g_i_BUTTON_SIZE,
 			g_i_BUTTON_SIZE,
@@ -266,7 +266,7 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		hBitmap = (HBITMAP)LoadImage
 		(
 			GetModuleHandle(NULL),
-			"ButtonsBMP\\metal_mistral\\button_bsp.bmp",
+			"ButtonsBMP\\square_blue\\button_bsp.bmp",
 			IMAGE_BITMAP,
 			g_i_BUTTON_SIZE,
 			g_i_BUTTON_SIZE,
@@ -290,7 +290,7 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		hBitmap = (HBITMAP)LoadImage
 		(
 			GetModuleHandle(NULL),
-			"ButtonsBMP\\metal_mistral\\button_clr.bmp",
+			"ButtonsBMP\\square_blue\\button_clr.bmp",
 			IMAGE_BITMAP,
 			g_i_BUTTON_SIZE,
 			g_i_BUTTON_SIZE,
@@ -314,7 +314,7 @@ INT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		hBitmap = (HBITMAP)LoadImage
 		(
 			GetModuleHandle(NULL),
-			"ButtonsBMP\\metal_mistral\\button_equal.bmp",
+			"ButtonsBMP\\square_blue\\button_equal.bmp",
 			IMAGE_BITMAP,
 			g_i_BUTTON_SIZE,
 			g_i_BUTTON_DOUBLE_SIZE,

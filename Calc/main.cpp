@@ -105,8 +105,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 	case WM_CREATE:
 	{		
-		//AllocConsole();
-		//freopen("CONOUT$", "w", stdout);
+		AllocConsole();
+		freopen("CONOUT$", "w", stdout);
 
 		HWND hEdit = CreateWindowEx
 		(
@@ -234,26 +234,53 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		HWND hEditDisplay = GetDlgItem(hwnd, IDC_EDIT_DISPLAY);
 		SendMessage(hEditDisplay, WM_GETTEXT, SIZE, (LPARAM)sz_display);
 		if (LOWORD(wParam >= IDC_BUTTON_0) && LOWORD(wParam <= IDC_BUTTON_9))
-		{	
-			if (!input && !input_operation)
+		{				
+			//if (!strcmp(sz_display, "0."))
+			//{				
+			//	std::cout << "!!!!!!!!!!!! " << std::endl;
+			//	sz_digit[0] = LOWORD(wParam) - IDC_BUTTON_0 + '0';
+			//	strcat(sz_display, sz_digit);
+			//}
+			//else
+			//{
+			//	if (!input && !input_operation)
+			//	{
+			//		SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_CLR), 0);
+			//		sz_display[0] = 0;
+			//	}
+			//	if (!input && input_operation)sz_display[0] = 0;
+			//	sz_digit[0] = LOWORD(wParam) - IDC_BUTTON_0 + '0';
+			//
+			//	if (strlen(sz_display) == 1 && sz_display[0] == '0')
+			//		sz_display[0] = sz_digit[0];
+			//	else
+			//		strcat(sz_display, sz_digit);
+			//	//strcat(sz_display, sz_digit);
+			//}					
+
+			if (!input && !input_operation && strcmp(sz_display, "0."))  ////////////////////////////////////////
 			{
-				SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_CLR), 0);				
-				sz_display[0] = 0;
+				SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_CLR), 0);
+				sz_display[0] = 0;				
 			}
 			if (!input && input_operation)sz_display[0] = 0;
 			sz_digit[0] = LOWORD(wParam) - IDC_BUTTON_0 + '0';
+			
 			if (strlen(sz_display) == 1 && sz_display[0] == '0')
 				sz_display[0] = sz_digit[0];
 			else
-				strcat(sz_display, sz_digit);
+				strcat(sz_display, sz_digit);			
+				
 			SendMessage(hEditDisplay, WM_SETTEXT, 0, (LPARAM)sz_display);
 			input = TRUE;			
+			std::cout << "sz_digit " << sz_digit << std::endl;
+			std::cout << "sz_display " << sz_display << std::endl;
 		}
 		if (LOWORD(wParam) == IDC_BUTTON_POINT)
 		{
 			if(strchr(sz_display, '.'))break;
 			strcat(sz_display, ".");
-			SendMessage(hEditDisplay, WM_SETTEXT, 0, (LPARAM)sz_display);
+			SendMessage(hEditDisplay, WM_SETTEXT, 0, (LPARAM)sz_display);			
 		}		
 		if (LOWORD(wParam) == IDC_BUTTON_BSP)
 		{

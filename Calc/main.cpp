@@ -236,8 +236,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		if (LOWORD(wParam >= IDC_BUTTON_0) && LOWORD(wParam <= IDC_BUTTON_9))
 		{				
 			//if (!strcmp(sz_display, "0."))
-			//{				
-			//	std::cout << "!!!!!!!!!!!! " << std::endl;
+			//{								
 			//	sz_digit[0] = LOWORD(wParam) - IDC_BUTTON_0 + '0';
 			//	strcat(sz_display, sz_digit);
 			//}
@@ -254,8 +253,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			//	if (strlen(sz_display) == 1 && sz_display[0] == '0')
 			//		sz_display[0] = sz_digit[0];
 			//	else
-			//		strcat(sz_display, sz_digit);
-			//	//strcat(sz_display, sz_digit);
+			//		strcat(sz_display, sz_digit);				
 			//}					
 
 			if (!input && !input_operation && strcmp(sz_display, "0."))  ////////////////////////////////////////
@@ -273,8 +271,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 				
 			SendMessage(hEditDisplay, WM_SETTEXT, 0, (LPARAM)sz_display);
 			input = TRUE;			
-			std::cout << "sz_digit " << sz_digit << std::endl;
-			std::cout << "sz_display " << sz_display << std::endl;
+			//std::cout << "sz_digit " << sz_digit << std::endl;
+			//std::cout << "sz_display " << sz_display << std::endl;
 		}
 		if (LOWORD(wParam) == IDC_BUTTON_POINT)
 		{

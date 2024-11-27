@@ -256,7 +256,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			//		strcat(sz_display, sz_digit);				
 			//}					
 
-			if (!input && !input_operation && strcmp(sz_display, "0."))  ////////////////////////////////////////
+			if (!input && !input_operation && strcmp(sz_display, "0.") != 0)  ////////////////////////////////////////
 			{
 				SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_CLR), 0);
 				sz_display[0] = 0;				

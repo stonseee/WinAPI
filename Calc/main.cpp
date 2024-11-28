@@ -207,14 +207,12 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			(HMENU)IDC_BUTTON_EQUAL,
 		    GetModuleHandle(NULL),
 		    NULL
-		);
-		
+		);		
 		SetSkin(hwnd, "square_blue");
 	}
-		break;
+	break;
 	case WM_COMMAND:
-	{
-			//если первый символ '.', то последующий ввод неправильный 
+	{			
 		CONST INT SIZE = 256;
 		CHAR sz_display[SIZE] = {};
 		CHAR sz_digit[2] = {};
@@ -227,7 +225,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 				SendMessage(hwnd, WM_COMMAND, LOWORD(IDC_BUTTON_CLR), 0);				
 				sz_display[0] = 0;
 			}
-			if (!input && input_operation)sz_display[0] = 0;
+			if (!input && input_operation /*&& !strchr(sz_display, '.')*/)sz_display[0] = 0;
 			sz_digit[0] = LOWORD(wParam) - IDC_BUTTON_0 + '0';
 			if (strlen(sz_display) == 1 && sz_display[0] == '0')
 				sz_display[0] = sz_digit[0];
@@ -238,9 +236,12 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		}
 		if (LOWORD(wParam) == IDC_BUTTON_POINT)
 		{
-			if(strchr(sz_display, '.'))break;
-			strcat(sz_display, ".");
+			if(strchr(sz_display, '.') && input)break;
+			if(input_operation && a == atof(sz_display))strcpy(sz_display, "0.");
+			else strcat(sz_display, ".");
 			SendMessage(hEditDisplay, WM_SETTEXT, 0, (LPARAM)sz_display);
+			input = TRUE;
+			strcat(sz_display, ".");
 		}		
 		if (LOWORD(wParam) == IDC_BUTTON_BSP)
 		{

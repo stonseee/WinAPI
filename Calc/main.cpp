@@ -34,6 +34,7 @@ CONST COLORREF g_WINDOW_BACKGROUND[]  = { RGB(0, 0, 150), RGB(75, 75, 75) };
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 VOID SetSkin(HWND hwnd, CONST CHAR* skin);
+VOID SetSkinFromDLL(HWND hwnd, CONST CHAR* skin);
 
 INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, INT nCmdShow)
 {
@@ -457,8 +458,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		BOOL skin_index = TrackPopupMenu(hMenu, TPM_LEFTALIGN | TPM_BOTTOMALIGN | TPM_RETURNCMD, LOWORD(lParam), HIWORD(lParam), 0, hwnd, 0);
 		switch (skin_index)
 		{
-		case IDR_SQUARE_BLUE: SetSkin(hwnd, "square_blue");		color_index = IDR_CONTEXT_MENU - IDR_SQUARE_BLUE + 1;	break;
-		case IDR_METAL_MISTRAL:	SetSkin(hwnd, "metal_mistral");		break;
+		case IDR_SQUARE_BLUE:   SetSkinFromDLL(hwnd, "square_blue");		color_index = IDR_CONTEXT_MENU - IDR_SQUARE_BLUE + 1;	break;
+		case IDR_METAL_MISTRAL:	SetSkinFromDLL(hwnd, "metal_mistral");		break;
 		case IDR_EXIT: DestroyWindow(hwnd);
 		}
 		DestroyMenu(hSubmenuSkins);
@@ -539,4 +540,25 @@ VOID SetSkin(HWND hwnd, CONST CHAR* skin)
 		std::cout << sz_file_name << std::endl;
 		SendMessage(hButton, BM_SETIMAGE, IMAGE_BITMAP, (LPARAM)bmpButton);
 	}
+}
+
+VOID SetSkinFromDLL(HWND hwnd, CONST CHAR* skin)
+{
+	CHAR filename[MAX_PATH]{};
+	sprintf(filename, "ButtonsBMP\\%s", skin);
+	HMODULE hInst = LoadLibrary(filename);
+	for (int i = IDC_BUTTON_0; i <= IDC_BUTTON_EQUAL; i++)
+	{
+		HBITMAP buttonBMP = (HBITMAP)LoadImage
+		(
+			hInst,
+			MAKEINTRESOURCE(i),
+			IMAGE_BITMAP,
+			i > IDC_BUTTON_0 ? g_i_BUTTON_SIZE : g_i_BUTTON_DOUBLE_SIZE,
+			i < IDC_BUTTON_EQUAL ? g_i_BUTTON_SIZE : g_i_BUTTON_DOUBLE_SIZE,
+			NULL
+		);
+		SendMessage(GetDlgItem(hwnd, i), BM_SETIMAGE, IMAGE_BITMAP, (LPARAM)buttonBMP);
+	}
+	FreeLibrary(hInst);
 }

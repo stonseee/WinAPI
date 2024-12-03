@@ -41,13 +41,37 @@ INT WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, IN
 	WNDCLASSEX wClass;
 	ZeroMemory(&wClass, sizeof(wClass));
 
+	CHAR filename[MAX_PATH]{ "ButtonsBMP\\square_blue" };	
+	HMODULE hInst = LoadLibrary(filename);
+
+		wClass.hIcon = (HICON)LoadImage
+		(
+			hInst,
+			MAKEINTRESOURCE(IDI_ICON1),
+			IMAGE_ICON,
+			LR_DEFAULTSIZE,
+			LR_DEFAULTSIZE,
+			NULL
+		);
+		wClass.hIconSm = (HICON)LoadImage
+		(
+			hInst,
+			MAKEINTRESOURCE(IDI_ICON1),
+			IMAGE_ICON,
+			LR_DEFAULTSIZE,
+			LR_DEFAULTSIZE,
+			NULL
+		);
+	
+	FreeLibrary(hInst);
+
 	wClass.style = 0;
 	wClass.cbSize = sizeof(wClass);
 	wClass.cbClsExtra = 0;
 	wClass.cbWndExtra = 0;
 
-	wClass.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ICON1));
-	wClass.hIconSm = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ICON1));
+	//wClass.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ICON1));
+	//wClass.hIconSm = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ICON1));
 	wClass.hCursor = LoadCursor(hInstance, IDC_ARROW);
 	wClass.hbrBackground = (HBRUSH)COLOR_WINDOW;
 	HBITMAP hBackgroung = (HBITMAP)LoadImage(hInstance, "Picture\\wolf.bmp", IMAGE_BITMAP, 0, 0, LR_LOADFROMFILE);
@@ -119,7 +143,8 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			(HMENU)IDC_EDIT_DISPLAY,
 			GetModuleHandle(NULL),
 			NULL
-		);
+		);	
+
 		AddFontResourceEx("Fonts\\Calculator.ttf", FR_PRIVATE, 0);
 		HFONT hFont = CreateFont
 		(

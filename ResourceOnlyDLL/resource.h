@@ -20,7 +20,7 @@
 #define IDB_BUTTON_BSP                  1015
 #define IDB_BUTTON_CLR                  1016
 #define IDB_BUTTON_EQUAL                1017
-//#define IDI_ICON1                       200
+#define IDI_ICON1                       102
 
 // Next default values for new objects
 // 

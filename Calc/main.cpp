@@ -123,7 +123,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 		);
 		AddFontResourceEx("Fonts\\Calculator.ttf", FR_PRIVATE, 0);
 		HINSTANCE hInstFont = LoadLibrary("..\\x64\\Debug\\FondOnlyDLL.dll");
-			// ..\\ - Выход в родительский каталог
+			// ..\\ - Выход в родительский каталог 
 		HRSRC hFontRes = FindResource(hInstFont, MAKEINTRESOURCE(99), "BINARY");
 		HGLOBAL hFntMem = LoadResource(hInstFont, hFontRes);
 		VOID* fntData = LockResource(hFntMem);

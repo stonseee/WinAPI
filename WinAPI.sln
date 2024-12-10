@@ -23,6 +23,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ResourceOnlyDLL", "Resource
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FondOnlyDLL", "FondOnlyDLL\FondOnlyDLL.vcxproj", "{BE774AF3-62DA-4305-BB8E-FB36E17BD8D5}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1_Calc", "Setup1_Calc\Setup1_Calc.vdproj", "{4C12F799-1F8B-4907-B4A5-4E31A9877782}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -111,6 +113,11 @@ Global
 		{BE774AF3-62DA-4305-BB8E-FB36E17BD8D5}.Release|x64.Build.0 = Release|x64
 		{BE774AF3-62DA-4305-BB8E-FB36E17BD8D5}.Release|x86.ActiveCfg = Release|Win32
 		{BE774AF3-62DA-4305-BB8E-FB36E17BD8D5}.Release|x86.Build.0 = Release|Win32
+		{4C12F799-1F8B-4907-B4A5-4E31A9877782}.Debug|x64.ActiveCfg = Debug
+		{4C12F799-1F8B-4907-B4A5-4E31A9877782}.Debug|x86.ActiveCfg = Debug
+		{4C12F799-1F8B-4907-B4A5-4E31A9877782}.Release|x64.ActiveCfg = Release
+		{4C12F799-1F8B-4907-B4A5-4E31A9877782}.Release|x64.Build.0 = Release
+		{4C12F799-1F8B-4907-B4A5-4E31A9877782}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
